@@ -20,7 +20,8 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     python3.11-dev \
     python3.11-distutils \
     ninja-build \
-    libnuma-dev && \
+    libnuma-dev \
+    git && \
     rm -rf /var/lib/apt/lists/*
 
 #-------------VS code setup-------------------------------------
@@ -52,6 +53,14 @@ RUN python3 -m pip install --upgrade pip
 RUN python3 -m pip install PyYAML mkl-static mkl-include typing-extensions==4.12.2 matplotlib numpy 
 RUN python3 -m pip install --pre torch torchvision torchaudio --index-url https://download.pytorch.org/whl/nightly/cu128
 
+# Clone a public Git repository
+RUN git clone https://github.com/Shiweiliuiiiiiii/fp4llmt.git
+
+# Optionally, switch to a specific commit, branch, or tag
+# RUN cd fp4llmt && git checkout tags/2.3.3
+
+RUN python3 -m pip install -e /fp4llmt[all]
+
 #-------------- WIP ----------------------
 # pip install other packages
 
@@ -64,8 +73,8 @@ RUN python3 -m pip install --pre torch torchvision torchaudio --index-url https:
 # RUN python /code/REALFP4.git/FP4_torch_kernel_main/setup.py develop
 #-------------------------------------------
 
-# Set workdir
-workdir /
+# Set the cloned repo as working directory
+WORKDIR /fp4llmt
 
 # Start SSH daemon
 CMD ["/usr/sbin/sshd", "-D"]
