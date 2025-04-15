@@ -20,7 +20,7 @@
   </a>
   <a href="https://discord.gg/sZq3jTNVNG">
     <img alt="Discord" src="https://img.shields.io/badge/Discord%20-%20blue?style=flat&logo=discord&label=Ai2&color=%235B65E9">
-  </a>
+  </a> 
 </p>
 
 OLMo is a repository for training and using AI2's state-of-the-art open language models. It is designed by scientists, for scientists.
